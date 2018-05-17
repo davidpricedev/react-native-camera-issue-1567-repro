@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react';
+import { RNCamera } from 'react-native-camera';
 import {
   Platform,
   StyleSheet,
@@ -33,6 +34,26 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
+        <View>
+            <RNCamera
+                ref={ref => (this.camera = ref)}
+                type={RNCamera.Constants.Type.front}
+                flashMode={RNCamera.Constants.FlashMode.on}
+                faceDetectionMode={
+                    RNCamera.Constants.FaceDetection.Mode.fast
+                }
+                faceDetectionLandmarks={
+                    RNCamera.Constants.FaceDetection.Landmarks.all
+                }
+                faceDetectionClassifications={
+                    RNCamera.Constants.FaceDetection.Classifications.all
+                }
+                permissionDialogTitle={'Permission to use camera'}
+                permissionDialogMessage={
+                    'We need your permission to use your camera phone'
+                }
+            />
+        </View>
       </View>
     );
   }
